@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Mise à jour de la liste des paquets
+sudo apt update
+
+# Installation des dépendances
+sudo apt install -y golang-go git unzip
+
+# Configuration de l'environnement Go
+echo 'export GOPATH=$HOME/go' >> ~/.bashrc
+echo 'export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' >> ~/.bashrc
+source ~/.bashrc
+
+# Clonage du référentiel GoPhish depuis GitHub
+git clone https://github.com/gophish/gophish.git ~/gophish
+
+# Accès au répertoire GoPhish
+cd ~/gophish
+
+# Construction de GoPhish
+go build
+
+# Démarrage de GoPhish
+./gophish
